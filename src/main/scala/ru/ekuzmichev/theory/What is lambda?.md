@@ -15,7 +15,7 @@ So we have:
 
 Therefore, the term **lambda calculus** refers to “a formal way to think about functions.”
 
-It forms the basis of almost all functional programming languages today. 
+It forms the basis of almost all functional programming languages today.
 Many functional programming languages can be viewed as elaborations on the lambda calculus
 
 The letter λ itself is arbitrary and has no special meaning.

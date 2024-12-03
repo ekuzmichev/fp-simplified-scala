@@ -9,7 +9,10 @@
 - Parallel/concurrent programming is easier
 
 ### Benefits of FP in Scala
-- Being able to (a) treat functions as values and (b) use anonymous functions makes code more concise, and still readable
+
+- Being able to (a) treat functions as values and (b) use anonymous functions makes code more concise, and still
+  readable
 - Scala syntax generally makes function signatures easy to read
 - The Scala collections’ classes have a very functional API
-- Scala runs on the JVM, so you can still use the wealth of JVM-based libraries and tools with your Scala/FP applications
+- Scala runs on the JVM, so you can still use the wealth of JVM-based libraries and tools with your Scala/FP
+  applications

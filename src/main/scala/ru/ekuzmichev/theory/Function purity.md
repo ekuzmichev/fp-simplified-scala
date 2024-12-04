@@ -16,3 +16,6 @@ They’re easier to reason about
 - They offer referential transparency
 - They are memoizable
 - They can be lazy
+
+Methods that have a Unit return type are called procedures, and the Procedure Syntax in the Scala Style Guide
+recommends declaring the Unit return type

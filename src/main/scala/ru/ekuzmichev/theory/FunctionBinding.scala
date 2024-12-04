@@ -39,17 +39,17 @@ object WrapperExample extends App {
 // map and flatMap methods.
 
 object FunctionBindingForLoopExample extends App {
-  case class Debuggable[A](value: A, message: String) {
-    def map[B](f: A => B): Debuggable[B] = Debuggable(f(value), message)
+  case class Debuggable[A](value: A, log: List[String]) {
+    def map[B](f: A => B): Debuggable[B] = Debuggable(f(value), log)
 
     def flatMap[B](f: A => Debuggable[B]): Debuggable[B] = f(value) match {
-      case Debuggable(value, message) => Debuggable(value, this.message + message)
+      case Debuggable(value, log: List[String]) => Debuggable(value, this.log ::: log)
     }
   }
 
-  def f(a: Int): Debuggable[Int] = Debuggable(a * 2, "[f result]")
-  def g(a: Int): Debuggable[Int] = Debuggable(a * 3, "[g result]")
-  def h(a: Int): Debuggable[Int] = Debuggable(a * 4, "[h result]")
+  def f(a: Int): Debuggable[Int] = Debuggable(a * 2, "[f result]" :: Nil)
+  def g(a: Int): Debuggable[Int] = Debuggable(a * 3, "[g result]" :: Nil)
+  def h(a: Int): Debuggable[Int] = Debuggable(a * 4, "[h result]" :: Nil)
 
   val result = for {
     fResult <- f(100)

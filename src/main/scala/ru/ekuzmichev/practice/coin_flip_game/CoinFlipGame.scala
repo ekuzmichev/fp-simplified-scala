@@ -6,13 +6,17 @@ import scala.annotation.tailrec
 import scala.util.Random
 
 object CoinFlipGame extends App {
-  private val initialGameState = GameState(0, 0)
+  private val initialGameRound = GameRound(0, 0)
+  private val initialGameState = GameState(initialGameRound, Seq.empty)
   private val random           = new Random
 
   mainLoop(initialGameState, random)
 
   @tailrec
   private def mainLoop(gameState: GameState, random: Random): Unit = {
+    val gameRound = gameState.gameRound
+    val history   = gameState.history
+
     showPrompt()
 
     val userInput: String = getUserInput()
@@ -21,34 +25,35 @@ object CoinFlipGame extends App {
       case "H" | "T" =>
         val coinTossResult: String = flipCoin(random)
 
-        val newNumFlips = gameState.numFlips + 1
+        val newNumFlips = gameRound.numFlips + 1
 
         val newNumCorrectGuesses =
           if (userInput == coinTossResult)
-            gameState.numCorrectGuesses + 1
+            gameRound.numCorrectGuesses + 1
           else
-            gameState.numCorrectGuesses
+            gameRound.numCorrectGuesses
 
-        val newGameState =
-          gameState.copy(
+        val newGameRound =
+          gameRound.copy(
             numFlips = newNumFlips,
             numCorrectGuesses = newNumCorrectGuesses
           )
 
-        printGameState(printFlipResult(coinTossResult), newGameState)
+        printGameRound(stringifyFlipResult(coinTossResult), newGameRound)
+
+        val newGameState = gameState.copy(gameRound = newGameRound)
 
         mainLoop(newGameState, random)
       case "N" =>
-        gameOver(gameState)
-        printNewGameStarted()
-        mainLoop(initialGameState, random)
-      case _ =>
-        gameOver(gameState)
+        val newGameState = gameState.copy(gameRound = initialGameRound, history = history :+ gameRound)
+        printNewGameRoundStarted()
+        printGameState(newGameState)
+        mainLoop(newGameState, random)
+      case _ => {
+        printGameOver()
+        printGameState(gameState)
+      }
     }
   }
 
-  private def gameOver(gameState: GameState): Unit = {
-    printGameOver()
-    printGameState(gameState)
-  }
 }

@@ -2,13 +2,13 @@ package ru.ekuzmichev.theory
 
 object FunctionBindingStraightforwardExample extends App {
   def f(a: Int): (Int, String) = (a * 2, "[f result]")
-  def g(a: Int): (Int, String) = (a * 3, "g result")
-  def h(a: Int): (Int, String) = (a * 4, "h result")
+  def g(a: Int): (Int, String) = (a * 3, "[g result]")
+  def h(a: Int): (Int, String) = (a * 4, "[h result]")
 
   def bind(fn: Int => (Int, String), res: (Int, String)): (Int, String) = res match {
     case (i, s) =>
       fn(i) match {
-        case (ii, ss) => (ii, s"$s $ss")
+        case (ii, ss) => (ii, s + ss)
       }
   }
 
@@ -38,7 +38,7 @@ object WrapperExample extends App {
 // the map and flatMap methods (like Sequence); it just needs to return a type that implements
 // map and flatMap methods.
 
-object FunctionBindingForLoopExample {
+object FunctionBindingForLoopExample extends App {
   case class Debuggable[A](value: A, message: String) {
     def map[B](f: A => B): Debuggable[B] = Debuggable(f(value), message)
 

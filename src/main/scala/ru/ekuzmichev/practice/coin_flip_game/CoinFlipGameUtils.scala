@@ -5,7 +5,7 @@ import scala.util.Random
 
 object CoinFlipGameUtils {
 
-  def showPrompt(): Unit = print("\n(h)eads, (t)ails, or (q)uit: ")
+  def showPrompt(): Unit = print("\n(h)eads, (t)ails, (n)ew game, or (q)uit: ")
 
   def getUserInput(): String = readLine.trim.toUpperCase
 
@@ -22,7 +22,9 @@ object CoinFlipGameUtils {
   def printGameState(gameState: GameState): Unit =
     println(s"#Flips: ${gameState.numFlips}, #Correct: ${gameState.numCorrectGuesses}")
 
-  def printGameOver(): Unit = println("\n=== GAME OVER ===")
+  def printGameOver(): Unit = println("\n=== GAME OVER ===\n")
+
+  def printNewGameStarted(): Unit = println("\n## New game started ##")
 
   // returns "H" for heads, "T" for tails
   def flipCoin(r: Random): String =

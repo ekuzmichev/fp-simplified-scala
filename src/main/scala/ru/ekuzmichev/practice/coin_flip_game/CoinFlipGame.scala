@@ -6,10 +6,10 @@ import scala.annotation.tailrec
 import scala.util.Random
 
 object CoinFlipGame extends App {
-  private val gameState = GameState(0, 0)
-  private val random    = new Random
+  private val initialGameState = GameState(0, 0)
+  private val random           = new Random
 
-  mainLoop(gameState, random)
+  mainLoop(initialGameState, random)
 
   @tailrec
   private def mainLoop(gameState: GameState, random: Random): Unit = {
@@ -38,9 +38,17 @@ object CoinFlipGame extends App {
         printGameState(printFlipResult(coinTossResult), newGameState)
 
         mainLoop(newGameState, random)
+      case "N" =>
+        gameOver(gameState)
+        printNewGameStarted()
+        mainLoop(initialGameState, random)
       case _ =>
-        printGameOver()
-        printGameState(gameState)
+        gameOver(gameState)
     }
+  }
+
+  private def gameOver(gameState: GameState): Unit = {
+    printGameOver()
+    printGameState(gameState)
   }
 }

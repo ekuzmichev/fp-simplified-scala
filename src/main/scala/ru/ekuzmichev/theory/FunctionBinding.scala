@@ -39,6 +39,7 @@ object WrapperExample extends App {
 // map and flatMap methods.
 
 object FunctionBindingForLoopExample extends App {
+  // It's an implementation of Writer monad from Haskell
   case class Debuggable[A](value: A, log: List[String]) {
     def map[B](f: A => B): Debuggable[B] = Debuggable(f(value), log)
 

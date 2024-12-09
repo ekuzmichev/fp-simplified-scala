@@ -1,4 +1,4 @@
-package ru.ekuzmichev.practice.coin_flip_game.semi_io
+package ru.ekuzmichev.practice.coin_flip_game
 
 case class GameState(
     gameRound: GameRound,

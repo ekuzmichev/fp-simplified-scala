@@ -1,11 +1,11 @@
-package ru.ekuzmichev.practice.coin_flip_game.semi_io
+package ru.ekuzmichev.practice.coin_flip_game
 
-import ru.ekuzmichev.practice.coin_flip_game.semi_io.CoinFlipGameUtils._
+import ru.ekuzmichev.practice.coin_flip_game.CoinFlipGameUtils._
 
 import scala.annotation.tailrec
 import scala.util.Random
 
-object CoinFlipGame extends App {
+object SemiIoCoinFlipGame extends App {
   private val initialGameRound = GameRound(0, 0)
   private val initialGameState = GameState(initialGameRound, Seq.empty)
   private val random           = new Random
@@ -49,10 +49,9 @@ object CoinFlipGame extends App {
         printNewGameRoundStarted()
         printGameState(newGameState)
         mainLoop(newGameState, random)
-      case _ => {
+      case _ =>
         printGameOver()
         printGameState(gameState)
-      }
     }
   }
 

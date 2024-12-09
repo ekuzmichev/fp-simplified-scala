@@ -1,5 +1,7 @@
 package ru.ekuzmichev.practice.coin_flip_game.semi_io
 
+import ru.ekuzmichev.practice.coin_flip_game.semi_io.CoinFlipGameUtils._
+
 import scala.annotation.tailrec
 import scala.util.Random
 

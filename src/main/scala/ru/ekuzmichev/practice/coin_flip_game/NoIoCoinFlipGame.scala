@@ -5,7 +5,7 @@ import ru.ekuzmichev.practice.coin_flip_game.CoinFlipGameUtils._
 import scala.annotation.tailrec
 import scala.util.Random
 
-object SemiIoCoinFlipGame extends App {
+object NoIoCoinFlipGame extends App {
   private val initialGameRound = GameRound(0, 0)
   private val initialGameState = GameState(initialGameRound, Seq.empty)
   private val random           = new Random

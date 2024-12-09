@@ -36,3 +36,16 @@ object IOExample extends App {
     _         <- putStrLn(s"First: $firstName, Last: $lastName")
   } yield ()
 }
+
+object FPRecursiveLoop extends App {
+  import Console._
+
+  private def loop: IO[Unit] = for {
+    _     <- putStrLn("Type something: ")
+    input <- getLine
+    _     <- putStrLn(s"You said '$input'.")
+    _     <- if (input == "quit") IO(()) else loop // RECURSE
+  } yield ()
+
+  loop.run
+}
